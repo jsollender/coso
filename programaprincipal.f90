@@ -4,6 +4,7 @@ program parcial1
 
 	use mod_prec
 	use mod_funciones
+	implicit none
 	
 	real (wp)		:: t, a, b!, x1t, x2t, DeltaXt
 	!real (wp)		:: x1, x2, DeltaX
