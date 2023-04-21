@@ -14,7 +14,7 @@ program parcial1
 	file_datos = "datos.dat"
 	
 	a = 1._wp
-	b =	2._wp
+	b = 2._wp
 
 	
 	open(newunit=fu, file=file_datos)
