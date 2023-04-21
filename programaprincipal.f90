@@ -18,7 +18,8 @@ program parcial1
 
 	
 	open(newunit=fu, file=file_datos)
-		
+		write(fu, '(4A20)') "t", "x1(t)", "x2(t)", "DeltaX(t)"
+
 		do i=0, 600, 1
 			
 			t = a + i*(b-a)/600._wp
