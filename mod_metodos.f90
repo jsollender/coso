@@ -56,14 +56,11 @@ subroutine bisec (func, a0, b0, tolx, tolf, nmax)
 		end if
 		
 !--- listos a < b. Abro archivo-------------------------------
-		write(*,*) "caca bisec"
+		
 		open(newunit=fu, file=file_datos_biseccion)
-			print *, "caca 3"
-            !write (fu,'(X5A2,4A15)') "it","raiz","f(raiz)","error relativo","errorf"
-			write (fu,*) "it","raiz","f(raiz)","error relativo","errorf"
 
-			print *, "caca 4"
-			
+            write (fu,'(5X, A2,4(X, A15))') "it","raiz","f(raiz)","error relativo","errorf"
+						
             
 		    do nit = 1, nmax, 1
 			
@@ -79,16 +76,14 @@ subroutine bisec (func, a0, b0, tolx, tolf, nmax)
 				    a = p
 				end if
 			    
-			    !write (fu,'(I7, 4ES15.8)') nit, p, fp, errorrel, errorf 
-                write (fu,*) nit, p, fp, errorrel, errorf 
-			    print *, "holas"
-			    if ((errorf < tolf).and.(errorrel<tolx)) then
-                    write (*,*) " ################# METODO DE BISECCION  #################   "  
-                    !write (*,'(X5A2,3A15)') "it","raiz","error relativo","errorf"
-                   write (*,*) "it","raiz","error relativo","errorf"
-
-                     !write (*,'(I7, 3ES15.8)') nit, p, errorrel, errorf  
-                    write (*,*) nit, p, errorrel, errorf
+			    write (fu,'(I7, 4(2X, ES15.8))') nit, p, fp, errorrel, errorf 
+                
+                if ((errorf < tolf).and.(errorrel<tolx)) then
+                    
+                    write (*,*) "################# METODO DE BISECCION  #################   "  
+                    write (*,'(5X, A2,3(X, A15))') "it","raiz","error relativo","errorf"
+                    write (*,'(I7, 3(2X, ES15.8))') nit, p, errorrel, errorf  
+                    				    
 				    exit
 				else if (nit==nmax) then
                     write(*,*) "No converge en maxite = ", nit, " iteraciones"
