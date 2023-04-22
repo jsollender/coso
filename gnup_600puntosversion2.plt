@@ -1,12 +1,15 @@
 set term x11 persist
 
+# parte II.A
+# Gráfico de las funciones posición de los móviles 1 y 2
+
 ##################################################
 #### 			h o l i s	 ( :			######
 ##################################################
 
-	set title " T I T U L "
-	set xlabel "equis"
-	set ylabel "igriega"
+	set title  "Funciones posición {x_1(t)} y {x_2(t)}"
+	set xlabel "Tiempo"
+	set ylabel "Posición"
     set grid 
     #set sample 500
     
@@ -19,29 +22,17 @@ set term x11 persist
 	
 	# gráfico función x2(t) :
 	replot "p2-funciones.dat" u 1:3 with linespoints linetype 2 linewidth 2
-	
-	
-#using n:m para seleccionar que columnas graficar#
-
-
-
-
-####Próximamente, solo en cines:
 
 
 ##################################################
 ######			E X P O R T A R				######
 ##################################################
 #############		P 	N 	G		 #############
-
 	
     set terminal png size 1200,900 
     set output 'output.png'
     replot
-#############		P 	D 	F		 #############
-
-	#set terminal pdf enhanced font "Helvetica, 11"
-	#set output "nombre_grafico.pdf"
+    
 exit
 
 
