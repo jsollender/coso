@@ -10,7 +10,7 @@ program parcial1
 	!Declaracion de variables
 	real (wp)		:: t		!variable tiempo
     real (wp)       :: a, b   	!extremos del intervalo
-    real (wp)       :: p0     	!aprox. inicial de la raiz metodo Newton
+    real (wp)       :: p0    	!aprox. inicial de la raiz metodo Newton
     !real (wp)       :: x0, x1 !aproximaciones iniciales metodo Secante
     real (wp)       :: tolx   	!tolerancia del error relativo en x
     real (wp)       :: toly   	!tolerancia del error absoluto en y
@@ -19,13 +19,17 @@ program parcial1
 	character (80)	:: file_datos !variable del nombre archivo del grafico
 	
 	!-------------------------------------------------------------------------
-    tolx = 1.10E8
-    toly = 1.10E8
+    
+    tolx = 0.01_wp
+    toly = 0.01_wp
+    
 
     !Parte II.b
     file_datos = "p2-funciones.dat"
 	a = 0._wp
 	b = 5._wp
+	
+	maxite = 100
 	
 	open(newunit=fu, file=file_datos)
 		write(fu, '(4A20)') "t", "x1(t)", "x2(t)", "DeltaX(t)"
