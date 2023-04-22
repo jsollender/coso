@@ -11,7 +11,7 @@ program parcial1
 	real (wp)		:: t		!variable tiempo
     real (wp)       :: a, b   	!extremos del intervalo
     real (wp)       :: p0     	!aprox. inicial de la raiz metodo Newton
-    real (wp)       :: x0, x1 !aproximaciones iniciales metodo Secante
+    !real (wp)       :: x0, x1 !aproximaciones iniciales metodo Secante
     real (wp)       :: tolx   	!tolerancia del error relativo en x
     real (wp)       :: toly   	!tolerancia del error absoluto en y
     integer (il)    :: maxite 	!maximo de iteracion permitidas
@@ -19,6 +19,9 @@ program parcial1
 	character (80)	:: file_datos !variable del nombre archivo del grafico
 	
 	!-------------------------------------------------------------------------
+    tolx = 1.10E8
+    toly = 1.10E8
+
     !Parte II.b
     file_datos = "p2-funciones.dat"
 	a = 0._wp
@@ -34,5 +37,9 @@ program parcial1
 	close (fu)
 
     !-------------------------------------------------------------------------
-    
+    ! Test Metodo de biseccion
+    ! bisec (func, a0, b0, tolx, tolf, nmax)
+    call bisec (DeltaX, a, b, tolx, toly, maxite )
+
+
 end program parcial1
