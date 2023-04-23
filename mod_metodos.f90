@@ -154,7 +154,9 @@ subroutine r_newton(f, df, raiz,  mit, tolx, toly, archivo)
             errorrel = abs(err_x/x1)    
             write(fu,'(I7, 5(X,E19.12))') i, x1, fx0,  errorrel, err_y
             if ((errorrel < tolx) .and. (err_y < toly)) then
-                
+                write (*,*) "################# METODO DE NEWTON  #################   "
+                write (*,'(5X, A2,3(X, A15))') "it","raiz","error relativo","errorf"
+                write (*,'(I7, 3(2X, ES15.8))') i, x1, errorrel, err_y                
                 exit
             end if
             x0 = x1
@@ -211,6 +213,9 @@ subroutine r_secante(f, raiz0, raiz1, mit, tolx, toly, archivo)
              
             write(fu,'(I7, 5(X,E19.12))' ) i, xr, fxr, errorrel, erry 
             if ((errorrel < tolx) .and. (erry < toly)) then
+                write (*,*) "################# METODO DE LA SECANTE #################   "
+                write (*,'(5X, A2,3(X, A15))') "it","raiz","error relativo","errorf"
+                write (*,'(I7, 3(2X, ES15.8))') i, xr, errorrel, erry    
                 exit
             end if
             x0 = x1
