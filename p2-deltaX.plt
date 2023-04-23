@@ -1,5 +1,10 @@
 set term x11 persist
 
+# parcial 1 - ejercicio 2
+
+# MERCADO, Javier
+# SOLLENDER, Jazmín
+
 # parte II.C
 # Gráfico de la diferencia de posiciones de los moviles DeltaX(t)
 

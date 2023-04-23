@@ -1,5 +1,10 @@
 set term x11 persist
 
+# parcial 1 - ejercicio 2
+
+# MERCADO, Javier
+# SOLLENDER, Jazmín
+
 # parte II.A
 # Gráfico de las funciones posición de los móviles 1 y 2
 
