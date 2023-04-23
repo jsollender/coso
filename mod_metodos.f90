@@ -124,7 +124,7 @@ subroutine r_newton(f, df, raiz,  mit, tolx, toly, archivo)
     character(80)              :: archivo !Archivo de texto .dat donde se guardan los datos
     !----------------------------------------
     !Declaracion de variable auxiliares
-    real(wp)                :: x0, x1, err_x,err_y ,fx0 , dfx0
+    real(wp)                :: x0, x1, err_x,err_y ,fx0 , dfx0, errorrel
     integer                 :: i, fu
    
 
@@ -134,14 +134,16 @@ subroutine r_newton(f, df, raiz,  mit, tolx, toly, archivo)
     fx0 = f(x0)
     
     !Condiciones para que la derivada sea distinta de 0
-   
-    !COMPLETAR
+    if (df(x0) == 0) then
+        write(*,*) "Derivada en la primera aproximacion = 0, Ingrese otro x0! Por favor" 
+        stop 
+    end if
     
 
     !Asumimos la derivada /= 0
 
     open(newunit=fu, file=archivo)
-        write(fu,'(A100)') "it           aprox raiz   f(raiz)           error relativo x            error f"        
+        write(fu,'(A100)') "it           aprox raiz   f(raiz)           error_relativo_x            error f"        
         
         do i = 1, mit, 1
             
@@ -149,9 +151,9 @@ subroutine r_newton(f, df, raiz,  mit, tolx, toly, archivo)
             fx0 = f(x1)
             err_x = abs(x1 - x0)/ abs(x1)
             err_y = abs(fx0)
-    
-            write(fu,'(I7, 5(X,E19.12))') i, x1, fx0,  err_x, err_y
-            if ((err_x < tolx) .and. (err_y < toly)) then
+            errorrel = abs(err_x/x1)    
+            write(fu,'(I7, 5(X,E19.12))') i, x1, fx0,  errorrel, err_y
+            if ((errorrel < tolx) .and. (err_y < toly)) then
                 
                 exit
             end if
@@ -181,7 +183,7 @@ subroutine r_secante(f, raiz0, raiz1, mit, tolx, toly, archivo)
     character(80)           :: archivo
 
     !Declaracion de Variables Auxiliares
-    real(wp)                :: x0, x1, fx0, fx1, xr, fxr,errx,erry
+    real(wp)                :: x0, x1, fx0, fx1, xr, fxr,errx,erry, errorrel
     integer                 :: i, fu
 
     !Bloque de procesamiento
@@ -198,17 +200,17 @@ subroutine r_secante(f, raiz0, raiz1, mit, tolx, toly, archivo)
 
     
     open(newunit=fu, file=archivo)
-        write(fu, *) "nit   aproximacion_raices   f(raiz)   error_x     error _y"
+        write(fu, *) "nit   aproximacion_raices   f(raiz)   error_relativo_x     error _y"
         
         do i = 1, mit, 1
             xr = x1 - fx1*((x1 - x0)/(fx1 - fx0))   
             fxr = f(xr)
             errx = abs(xr - x1)
             erry = abs(fxr)
-            !write(*,'(I7, 5(X,E19.12))' ) i, xr, fxr, errx, erry 
-            
-            write(fu,'(I7, 5(X,E19.12))' ) i, xr, fxr, errx, erry 
-            if ((errx < tolx) .and. (erry < toly)) then
+            errorrel = abs(errx/xr)
+             
+            write(fu,'(I7, 5(X,E19.12))' ) i, xr, fxr, errorrel, erry 
+            if ((errorrel < tolx) .and. (erry < toly)) then
                 exit
             end if
             x0 = x1
