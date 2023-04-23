@@ -42,7 +42,7 @@ subroutine bisec (func, p, a0, b0, tolx, tolf, nit, nmax)
 			
 			print *, "abrio el open"
 			
-  			do nit = 1, 5, 1
+  			do nit = 1, nmax, 1
   			 
   				write (fu,*) nit
   				write (*,*) nit
