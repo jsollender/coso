@@ -151,7 +151,7 @@ subroutine r_newton(f, df, raiz,  mit, tolx, toly, archivo)
             err_y = abs(fx0)
     
             write(fu,'(I7, 5(X,E19.12))') i, x1, fx0,  err_x, err_y
-            if ((err_x < tolx) .or. (err_y < toly)) then
+            if ((err_x < tolx) .and. (err_y < toly)) then
                 
                 exit
             end if
@@ -208,7 +208,7 @@ subroutine r_secante(f, raiz0, raiz1, mit, tolx, toly, archivo)
             !write(*,'(I7, 5(X,E19.12))' ) i, xr, fxr, errx, erry 
             
             write(fu,'(I7, 5(X,E19.12))' ) i, xr, fxr, errx, erry 
-            if ((errx < tolx) .or. (erry < toly)) then
+            if ((errx < tolx) .and. (erry < toly)) then
                 exit
             end if
             x0 = x1
