@@ -10,26 +10,27 @@ program parcial1
 	!Declaracion de variables
 	real (wp)		:: t		!variable tiempo
     real (wp)       :: a, b   	!extremos del intervalo
-    real (wp)       :: p0    	!aprox. inicial de la raiz metodo Newton
-    !real (wp)       :: x0, x1 !aproximaciones iniciales metodo Secante
+    real (wp)       :: p0     	!aprox. inicial de la raiz metodo Newton
+    real (wp)       :: r0, r1 !aproximaciones iniciales metodo Secante
     real (wp)       :: tolx   	!tolerancia del error relativo en x
     real (wp)       :: toly   	!tolerancia del error absoluto en y
     integer (il)    :: maxite 	!maximo de iteracion permitidas
 	integer (il)	:: i, fu  	!variable i iteracion, fu archivo
-	character (80)	:: file_datos !variable del nombre archivo del grafico
+	character (80)	:: file_datos, file_bisec, file_newton, file_secante !variable del nombre archivo del grafico
 	
 	!-------------------------------------------------------------------------
-    
     tolx = 1.e-8_wp
     toly = 1.e-8_wp
-    
-
+    file_bisec = "biseccion.dat"
+    file_newton = "newton.dat"
+    file_secante = "secante.dat"
     !Parte II.b
     file_datos = "p2-funciones.dat"
 	a = 0._wp
 	b = 5._wp
-	
-	maxite = 100
+    p0 = 1.2_wp
+    r0 = 1
+    r1 = 3
 	
 	open(newunit=fu, file=file_datos)
 		write(fu, '(4A20)') "t", "x1(t)", "x2(t)", "DeltaX(t)"
@@ -43,7 +44,9 @@ program parcial1
     !-------------------------------------------------------------------------
     ! Test Metodo de biseccion
     ! bisec (func, a0, b0, tolx, tolf, nmax)
-    call bisec (DeltaX, a, b, tolx, toly, maxite )
-
-
+    call bisec (DeltaX, a, b, tolx, toly, maxite, file_bisec)
+    !r_newton(f, df, raiz,  mit, tolx, toly, archivo)
+    call r_newton(DeltaX, derivada, p0, maxite, tolx, toly, file_newton)
+    !r_secante(f, raiz0, raiz1, mit, tolx, toly, archivo)
+    call r_secante(DeltaX, r0, r1, maxite, tolx, toly, file_secante)
 end program parcial1
