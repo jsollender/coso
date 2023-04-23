@@ -28,4 +28,12 @@ contains
 	
 	end function DeltaX
 
+	function derivada(t)
+		real (wp), intent (in)	:: t
+		real (wp)				:: derivada
+		
+		derivada = -10._wp*exp(-0.1_wp*t)-3._wp
+	
+	end function derivada
+
 end module mod_funciones
