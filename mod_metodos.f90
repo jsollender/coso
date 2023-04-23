@@ -68,7 +68,7 @@ module mod_metodos
 			
 			open(newunit=fu, file=file_datos_biseccion)
 
-		        write (fu,'(5X, A2,4(X, A15))') "it","raiz","f(raiz)","error relativo","errorf"
+		        write (fu,'(5X, A2,2(X, A15), 6X, A15, X, A15)') "it","raiz","f(raiz)","error relativo","errorf"
 							
 		        
 				do nit = 1, nmax, 1
@@ -93,9 +93,11 @@ module mod_metodos
 		                write (*,*) "################# METODO DE BISECCION #################"  
 		                write (*,*) "#######################################################"
 		                write (*,*) ""
-		                write (*,'(5X, A2,3(X, A15))') "it","raiz","error relativo","errorf"
-		                write (*,'(I7, 3(2X, ES15.8))') nit, p, errorrel, errorf  
-		                				    
+		                write (*,'(5X, A2, X, A15, 3X, A15, X, A15)') "it","raiz","error relativo","errorf"
+		                write (*,'(I7, 3(2X, ES15.8))') nit, p, errorrel, errorf
+				        write (*,*) ""
+				        write (*,*) ""
+				        write (*,*) ""				    
 						exit
 					else if (nit==nmax) then
 		                write(*,*) "No converge en maxite = ", nit, " iteraciones"
@@ -171,8 +173,11 @@ module mod_metodos
 		            write (*,*) "##################  METODO DE NEWTON   #################"  
 		            write (*,*) "########################################################"
 		            write (*,*) ""
-		            write (*,'(5X, A2,3(X, A15))') "it","raiz","error relativo","errorf"
+		            write (*,'(5X, A2, X, A15, 3X, A15, X, A15)') "it","raiz","error relativo","errorf"
 		            write (*,'(I7, 3(2X, ES15.8))') i, x1, errorrel, err_y                
+		            write (*,*) ""
+		            write (*,*) ""
+		            write (*,*) ""
 		            exit
 		        end if
 		        x0 = x1
@@ -233,8 +238,11 @@ module mod_metodos
 		            write (*,*) "################## METODO LA SECANTE ##################"  
 		            write (*,*) "#######################################################"
 		            write (*,*) ""
-		            write (*,'(5X, A2,3(X, A15))') "it","raiz","error relativo","errorf"
+		            write (*,'(5X, A2, X, A15, 3X, A15, X, A15)') "it","raiz","error relativo","errorf"
 		            write (*,'(I7, 3(2X, ES15.8))') i, xr, errorrel, erry    
+		            write (*,*) ""
+		            write (*,*) ""
+		            write (*,*) ""
 		            exit
 		        end if
 		        x0 = x1
